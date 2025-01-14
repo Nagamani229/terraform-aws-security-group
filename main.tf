@@ -1,9 +1,10 @@
 resource "aws_security_group" "allow_tls" {
     name        = "${var.project_name}-${var.environment}-${var.sg_name}"
-    description = var.sg_description
+    descriptions = var.sg_description
     vpc_id = var.vpc_id
 
     dynamic ingress {
+    
         for_each = var.sg_ingress_rules
         content {
           description      = ingress.value["description"]
